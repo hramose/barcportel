@@ -21,9 +21,12 @@
                 </div>
             </div>
         </div>
+        @include('layouts.partial.msg')
+
 
         <div class="login__block__body">
             <form method="POST" action="{{ route('register') }}">
+                @csrf
             <div class="form-group">
                 <input id="name" type="text" class="form-control text-center{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}"  placeholder="Name" required autofocus>
 

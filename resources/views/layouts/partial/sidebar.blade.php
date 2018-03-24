@@ -35,6 +35,11 @@
                         <i class="zmdi zmdi-apps"></i> Course
                     </a>
                 </li>
+                <li class="{{ Request::is('admin/student*') ? 'navigation__active' : '' }}">
+                    <a href="{{ route('admin.student.index') }}">
+                        <i class="zmdi zmdi-accounts"></i> Student
+                    </a>
+                </li>
             </ul>
         @elseif(Request::is('student/*'))
             <ul class="navigation">

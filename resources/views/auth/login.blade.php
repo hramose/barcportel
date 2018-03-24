@@ -3,6 +3,7 @@
 @section('title', 'Login')
 
 @section('content')
+
     <div class="login">
 
         <!-- Login -->
@@ -22,6 +23,7 @@
                     </div>
                 </div>
             </div>
+            @include('layouts.partial.msg')
 
             <div class="login__block__body">
                 <form method="POST" action="{{ route('login') }}">

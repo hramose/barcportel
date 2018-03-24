@@ -22,7 +22,7 @@
     @stack('css')
 </head>
 @php
-    $number = array(1,2,3,4,5,6,7,8,9,10);
+    $number = array(2,3,4,5,6,7,8,9,10);
     $theme = array_rand($number);
 @endphp
 <body data-sa-theme="{{ $theme }}">
@@ -35,6 +35,7 @@
                     </svg>
                 </div>
             </div>
+
             @if(Request::is('admin/*') || Request::is('student/*'))
                 @include('layouts.partial.header')
 
