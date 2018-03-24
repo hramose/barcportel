@@ -26,6 +26,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admi
     Route::resource('course/{course}/unit','UnitController');
     Route::resource('/course/{course}/unit/{unit}/lesson','LessonController');
 
+    Route::post('assign-course-to-user','CourseController@assignCourse')->name('admin.assign.course');
+
     Route::get('/student','StudentController@index')->name('admin.student.index');
     Route::post('/student/{user}','StudentController@status')->name('admin.student.status');
     Route::delete('/student/{user','StudentController@destroy')->name('admin.student.destroy');

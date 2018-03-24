@@ -6,7 +6,15 @@
       </button> Oh snap! {{ $error }}
     </div>
   @endforeach
-@endif 
+@endif
+
+@if(session('errorMsg'))
+    <div class="alert alert-danger alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button> Oh snap! {{ session('errorMsg') }}
+    </div>
+@endif
 
 @if(session('successMsg'))
 <div class="alert alert-success alert-dismissible fade show">

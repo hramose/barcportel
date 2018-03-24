@@ -3,13 +3,65 @@
 @section('title','Course')
 
 @push('css')
-
+    <link rel="stylesheet" href="{{ asset('vendors/bower_components/select2/dist/css/select2.min.css') }}">
 @endpush
 
 @section('content')
-    <header class="content__title">
-        <a href="{{ route('course.create') }}" class="btn btn-info">Create Course</a>
-    </header>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Course Action</h4>
+            {{--<h6 class="card-subtitle">Click the buttons below to show and hide another element via class changes:</h6>--}}
+
+            <div class="btn-demo">
+                <a class="btn btn-light" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Assign Course To Student
+                </a>
+                <a href="{{ route('course.create') }}" class="btn btn-info">Create Course</a>
+
+            </div>
+
+            <div class="collapse" id="collapseExample">
+                <hr>
+
+                <div class="card card-body">
+                    <form method="POST" action="{{ route('admin.assign.course') }}">
+                        @csrf
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label>All Courses</label>
+
+                                    <select class="select2" name="course">
+                                        @foreach($courses as $course)
+                                            <option value="{{ $course->id }}">{{ $course->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label>All Students</label>
+
+                                    <select class="select2" name="student">
+                                        @foreach($students as $student)
+                                            <option value="{{ $student->id }}">{{ $student->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-demo">
+                            <a class="btn btn-danger" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                Close
+                            </a>
+                            <button type="submit" class="btn btn-success">Assign</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">All Courses</h4>
@@ -22,6 +74,7 @@
                             <th>Id</th>
                             <th>Name</th>
                             <th>Description</th>
+                            <th>Students</th>
                             <th>Update At</th>
                             <th class="text-center">Action</th>
                         </tr>
@@ -31,6 +84,7 @@
                         <th>Id</th>
                         <th>Name</th>
                         <th>Description</th>
+                        <th>Students</th>
                         <th>Update At</th>
                         <th class="text-center">Action</th>
                     </tr>
@@ -41,6 +95,7 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $course->name }}</td>
                                 <td>{{ $course->description }}</td>
+                                <td>{{ $course->students->count() }}</td>
                                 <td>{{ $course->updated_at }}</td>
                                 <td class="text-right">
                                 <a href="{{ route('unit.index',$course->id) }}" class="btn btn-primary btn--icon-text">
@@ -77,4 +132,5 @@
     <script src="{{ asset('vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('vendors/bower_components/jszip/dist/jszip.min.js') }}"></script>
     <script src="{{ asset('vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('vendors/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
 @endpush

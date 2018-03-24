@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Course;
+use App\Role;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,7 +18,8 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::all();
-        return view('admin.course.index',compact('courses'));
+        $students = Role::find(2)->users;
+        return view('admin.course.index',compact('courses','students'));
     }
 
     /**
@@ -104,5 +107,19 @@ class CourseController extends Controller
     {
         Course::find($course->id)->delete();;
         return redirect()->back()->with('successMsg','Course Successfully Deleted :)');
+    }
+
+    public function assignCourse(Request $request)
+    {
+        $course = Course::findOrFail($request->course);
+        $student = User::findOrFail($request->student)->courses()->where('course_id',$request->course)->count();
+        if ($student == 0)
+        {
+            $course->students()->attach($request->student);
+            return redirect()->back()->with('successMsg','Course Successfully Attach To Student');
+        }else{
+            return redirect()->back()->with('errorMsg','Course is already attach to this student');
+
+        }
     }
 }

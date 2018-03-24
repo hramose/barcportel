@@ -18,8 +18,8 @@
     <!-- Styles -->
     {{--<link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
     <!-- App styles -->
-    <link rel="stylesheet" href="{{ asset('css/app.min.css') }}">
     @stack('css')
+    <link rel="stylesheet" href="{{ asset('css/app.min.css') }}">
 </head>
 @php
     $number = array(2,3,4,5,6,7,8,9,10);
