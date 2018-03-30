@@ -15,4 +15,9 @@ class Unit extends Model
     {
         return $this->belongsTo('App\Course');
     }
+
+    public function students()
+    {
+        return $this->belongsToMany('App\User')->withTimestamps();
+    }
 }

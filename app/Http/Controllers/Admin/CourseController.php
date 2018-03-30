@@ -113,10 +113,24 @@ class CourseController extends Controller
     {
         $course = Course::findOrFail($request->course);
         $student = User::findOrFail($request->student)->courses()->where('course_id',$request->course)->count();
+        $isComplete = User::findOrFail($request->student)->courses()->where('is_complete',false)->count();
         if ($student == 0)
         {
-            $course->students()->attach($request->student);
-            return redirect()->back()->with('successMsg','Course Successfully Attach To Student');
+            if ($isComplete == 0)
+            {
+                $course->students()->attach($request->student);
+                foreach ($course->units as $unit) {
+                    $unit->students()->attach($request->student);
+
+                    foreach ($unit->lessons as $lesson) {
+                        $lesson->students()->attach($request->student);
+                    }
+                }
+                return redirect()->back()->with('successMsg','Course Successfully Attach To Student');
+            }else{
+                return redirect()->back()->with('errorMsg',"This student's previous course is not completed yet");
+            }
+
         }else{
             return redirect()->back()->with('errorMsg','Course is already attach to this student');
 

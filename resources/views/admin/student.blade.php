@@ -19,6 +19,7 @@
                         <th>Id</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Courses</th>
                         <th>Status</th>
                         <th>Register At</th>
                         <th class="text-center">Action</th>
@@ -29,6 +30,7 @@
                         <th>Id</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Courses</th>
                         <th>Status</th>
                         <th>Register At</th>
                         <th class="text-center">Action</th>
@@ -40,6 +42,11 @@
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $student->name }}</td>
                             <td>{{ $student->email }}</td>
+                            <td>
+                                @foreach($student->courses as $course)
+                                    <span class="badge badge-pill badge-info">{{ $course->name }}</span>
+                                @endforeach
+                            </td>
                             <td>
                                 @if($student->status == true)
                                     <span class="badge badge-pill badge-success">Active</span>

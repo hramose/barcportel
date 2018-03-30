@@ -10,4 +10,9 @@ class Lesson extends Model
     {
         return $this->belongsTo('App\Unit');
     }
+
+    public function students()
+    {
+        return $this->belongsToMany('App\User')->withTimestamps();
+    }
 }

@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admin']], function (){
     Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
@@ -36,4 +36,5 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admi
 
 Route::group(['prefix'=>'student','namespace'=>'Student','middleware'=>['auth','student']], function (){
     Route::get('dashboard', 'StudentController@dashboard')->name('student.dashboard');
+    Route::get('course', 'CourseController@index')->name('student.course');
 });

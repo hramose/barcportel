@@ -36,4 +36,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Course')->withTimestamps();
     }
+
+    public function units()
+    {
+        return $this->belongsToMany('App\Unit')->withTimestamps();
+    }
+
+    public function lessons()
+    {
+        return $this->belongsToMany('App\Lesson')->withTimestamps();
+    }
 }
