@@ -1,479 +1,569 @@
 @extends('layouts.app')
 
-@section('title','Dashboard')
-
 @push('css')
-
-    <link rel="stylesheet" href="{{ asset('vendors/bower_components/fullcalendar/dist/fullcalendar.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/jvectormap/jquery-jvectormap-2.0.3.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('plugins/morrisjs/morris.min.css') }}" />
 @endpush
 
 @section('content')
-    <header class="content__title">
-        <h1>Dashboard</h1>
-        <small>Welcome to the unique SuperAdmin web app experience!</small>
-
-        <div class="actions">
-            <a href="#" class="actions__item zmdi zmdi-trending-up"></a>
-            <a href="#" class="actions__item zmdi zmdi-check-all"></a>
-
-            <div class="dropdown actions__item">
-                <i data-toggle="dropdown" class="zmdi zmdi-more-vert"></i>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a href="#" class="dropdown-item">Refresh</a>
-                    <a href="#" class="dropdown-item">Manage Widgets</a>
-                    <a href="#" class="dropdown-item">Settings</a>
+    <section class="content home">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-12">
+                    <h2>Dashboard
+                        <small>Welcome to Oreo</small>
+                    </h2>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                    <div class="inlineblock text-center m-r-15 m-l-15 hidden-md-down">
+                        <div class="sparkline" data-type="bar" data-width="97%" data-height="25px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#fff">3,2,6,5,9,8,7,9,5,1,3,5,7,4,6</div>
+                        <small class="col-white">Visitors</small>
+                    </div>
+                    <div class="inlineblock text-center m-r-15 m-l-15 hidden-md-down">
+                        <div class="sparkline" data-type="bar" data-width="97%" data-height="25px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#fff">1,3,5,7,4,6,3,2,6,5,9,8,7,9,5</div>
+                        <small class="col-white">Operations</small>
+                    </div>
+                    <button class="btn btn-white btn-icon btn-round hidden-sm-down float-right m-l-10" type="button">
+                        <i class="zmdi zmdi-plus"></i>
+                    </button>
+                    <ul class="breadcrumb float-md-right">
+                        <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> Oreo</a></li>
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </header>
-
-    <div class="row quick-stats">
-        <div class="col-sm-6 col-md-3">
-            <div class="quick-stats__item">
-                <div class="quick-stats__info">
-                    <h2>987,459</h2>
-                    <small>Total Leads Recieved</small>
-                </div>
-
-                <div class="quick-stats__chart peity-bar">6,4,8,6,5,6,7,8,3,5,9</div>
-            </div>
-        </div>
-
-        <div class="col-sm-6 col-md-3">
-            <div class="quick-stats__item">
-                <div class="quick-stats__info">
-                    <h2>356,785K</h2>
-                    <small>Total Website Clicks</small>
-                </div>
-
-                <div class="quick-stats__chart peity-bar">4,7,6,2,5,3,8,6,6,4,8</div>
-            </div>
-        </div>
-
-        <div class="col-sm-6 col-md-3">
-            <div class="quick-stats__item">
-                <div class="quick-stats__info">
-                    <h2>$58,778</h2>
-                    <small>Total Sales Orders</small>
-                </div>
-
-                <div class="quick-stats__chart peity-bar">9,4,6,5,6,4,5,7,9,3,6</div>
-            </div>
-        </div>
-
-        <div class="col-sm-6 col-md-3">
-            <div class="quick-stats__item">
-                <div class="quick-stats__info">
-                    <h2>214</h2>
-                    <small>Total Support Tickets</small>
-                </div>
-
-                <div class="quick-stats__chart peity-bar">5,6,3,9,7,5,4,6,5,6,4</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Sales Statistics</h4>
-                    <h6 class="card-subtitle">Vestibulum purus quam scelerisque, mollis nonummy metus</h6>
-
-                    <div class="flot-chart flot-curved-line"></div>
-                    <div class="flot-chart-legends flot-chart-legends--curved"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Growth Rate</h4>
-                    <h6 class="card-subtitle">Commodo luctus nisi erat porttitor ligula eget lacinia odio semnec</h6>
-
-                    <div class="flot-chart flot-line"></div>
-                    <div class="flot-chart-legends flot-chart-legends--line"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div data-columns>
-        <div class="card widget-past-days">
-            <div class="card-body">
-                <h4 class="card-title">For the past 30 days</h4>
-                <h6 class="card-subtitle">Pellentesque ornare sem lacinia quam</h6>
-            </div>
-
-            <div class="flot-chart flot-chart--sm flot-past-days"></div>
-
-            <div class="listview listview--bordered">
-                <div class="listview__item">
-                    <div class="widget-past-days__info">
-                        <small>Page Views</small>
-                        <h3>47,896,536</h3>
-                    </div>
-
-                    <div class="widget-past-days__chart hidden-sm">
-                        <div class="peity-bar">6,9,5,6,3,7,5,4,6,5,6,4,2,5,8,2,6,9</div>
-                    </div>
-                </div>
-
-                <div class="listview__item">
-                    <div class="widget-past-days__info">
-                        <small>Site Visitors</small>
-                        <h3>24,456,799</h3>
-                    </div>
-
-                    <div class="widget-past-days__chart hidden-sm">
-                        <div class="peity-bar">5,7,2,5,2,8,6,7,6,5,3,1,9,3,5,8,2,4</div>
-                    </div>
-                </div>
-
-                <div class="listview__item">
-                    <div class="widget-past-days__info">
-                        <small>Total Clicks</small>
-                        <h3>13,965</h3>
-                    </div>
-
-                    <div class="widget-past-days__chart hidden-sm">
-                        <div class="peity-bar">5,7,2,5,2,8,6,7,6,5,3,1,9,3,5,8,2,4</div>
-                    </div>
-                </div>
-
-                <div class="listview__item">
-                    <div class="widget-past-days__info">
-                        <small>Total Returns</small>
-                        <h3>198</h3>
-                    </div>
-
-                    <div class="widget-past-days__chart hidden-sm">
-                        <div class="peity-bar">3,9,1,3,5,6,7,6,8,2,5,2,7,5,6,7,6,8</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card widget-visitors">
-            <div class="card-body">
-                <h4 class="card-title">Realtime Visitors</h4>
-                <h6 class="card-subtitle">Nullam dolor isnibh ultricies vehicula adipiscing</h6>
-
-                <div class="widget-visitors__stats">
-                    <div>
-                        <strong>23528</strong>
-                        <small>Visitor for last 24 hours</small>
-                    </div>
-                    <div>
-                        <strong>746</strong>
-                        <small>Visitors last 30 minutes</small>
-                    </div>
-                </div>
-
-                <div class="widget-visitors__map map-visitors"></div>
-            </div>
-
-            <div class="listview listview--bordered">
-                <div class="listview__item">
-                    <div class="listview__content">
-                        <div class="listview__heading">Sunday, September 4, 21:44:02 (2 Mins 56 Seconds)</div>
-
-                        <div class="listview__attrs">
-                            <span>United States</span>
-                            <span>Firefox</span>
-                            <span>Mac OSX</span>
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-lg-8 col-md-12">
+                    <div class="row clearfix">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card top_counter">
+                                <div class="body">
+                                    <div class="icon xl-slategray"><i class="zmdi zmdi-account-o"></i> </div>
+                                    <div class="content">
+                                        <div class="text">Student</div>
+                                        <h5 class="number count-to" data-from="0" data-to="2049" data-speed="2500" data-fresh-interval="700">2049</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card top_counter">
+                                <div class="body">
+                                    <div class="icon xl-slategray"><i class="zmdi zmdi-account-circle"></i> </div>
+                                    <div class="content">
+                                        <div class="text">Teacher</div>
+                                        <h5 class="number count-to" data-from="0" data-to="39" data-speed="4000" data-fresh-interval="700">39</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card top_counter">
+                                <div class="body">
+                                    <div class="icon xl-slategray"><i class="zmdi zmdi-label"></i> </div>
+                                    <div class="content">
+                                        <div class="text">Attendance</div>
+                                        <h5 class="number count-to" data-from="0" data-to="798" data-speed="3000" data-fresh-interval="700">798</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card top_counter">
+                                <div class="body">
+                                    <div class="icon xl-slategray"><i class="zmdi zmdi-graduation-cap"></i> </div>
+                                    <div class="content">
+                                        <div class="text">Courses</div>
+                                        <h5 class="number count-to" data-from="0" data-to="43" data-speed="2500" data-fresh-interval="700">43</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card top_counter">
+                                <div class="body">
+                                    <div class="icon xl-slategray"><i class="zmdi zmdi-balance-wallet"></i> </div>
+                                    <div class="content">
+                                        <div class="text">Expense</div>
+                                        <h5 class="m-b-0">$<span class="number count-to" data-from="0" data-to="2154" data-speed="2500" data-fresh-interval="700">2154</span></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card top_counter">
+                                <div class="body">
+                                    <div class="icon xl-slategray"><i class="zmdi zmdi-balance"></i> </div>
+                                    <div class="content">
+                                        <div class="text">Income</div>
+                                        <h5 class="m-b-0">$<span class="number count-to" data-from="0" data-to="5478" data-speed="2500" data-fresh-interval="700">5478</span></h5>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div class="card">
+                        <div class="header">
+                            <h2><strong>University</strong> Survey <small>Description text here...</small></h2>
+                            <ul class="header-dropdown">
+                                <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more"></i> </a>
+                                    <ul class="dropdown-menu dropdown-menu-right slideUp float-right">
+                                        <li><a href="javascript:void(0);">Edit</a></li>
+                                        <li><a href="javascript:void(0);">Delete</a></li>
+                                        <li><a href="javascript:void(0);">Report</a></li>
+                                    </ul>
+                                </li>
+                                <li class="remove">
+                                    <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs padding-0">
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#chart-view">Chart View</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#table-view">Table View</a></li>
+                            </ul>
 
-                <div class="listview__item">
-                    <div class="listview__content">
-                        <div class="listview__heading">Sunday, September 4, 20:21:01 (5 Mins 12 Seconds)</div>
-
-                        <div class="listview__attrs">
-                            <span>Australia</span>
-                            <span>Chrome</span>
-                            <span>Android</span>
+                            <!-- Tab panes -->
+                            <div class="tab-content m-t-10">
+                                <div class="tab-pane active" id="chart-view">
+                                    <div id="m_bar_chart" class="graph"></div>
+                                    <div class="xl-slategray">
+                                        <div class="body">
+                                            <div class="row text-center">
+                                                <div class="col-sm-3 col-6">
+                                                    <h4 class="margin-0">$106</h4>
+                                                    <p class="text-muted margin-0"> Today's</p>
+                                                </div>
+                                                <div class="col-sm-3 col-6">
+                                                    <h4 class="margin-0">$907</h4>
+                                                    <p class="text-muted margin-0">This Week's</p>
+                                                </div>
+                                                <div class="col-sm-3 col-6">
+                                                    <h4 class="margin-0">$4210</h4>
+                                                    <p class="text-muted margin-0">This Month's</p>
+                                                </div>
+                                                <div class="col-sm-3 col-6">
+                                                    <h4 class="margin-0">$7,000</h4>
+                                                    <p class="text-muted margin-0">This Year's</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="table-view">
+                                    <div class="table-responsive">
+                                        <table class="table m-b-0 table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th class="hidden-sm-down">Address</th>
+                                                <th>Earning</th>
+                                                <th class="hidden-md-down">Reviews</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>University Name</td>
+                                                <td class="hidden-sm-down">Porterfield 508 Virginia Street Chicago, IL 60653</td>
+                                                <td>$2,325</td>
+                                                <td class="hidden-md-down">
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-neutral"><i class="zmdi zmdi-chart"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>University Name</td>
+                                                <td class="hidden-sm-down">2595 Pearlman Avenue Sudbury, MA 01776 </td>
+                                                <td>$3,325</td>
+                                                <td class="hidden-md-down">
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-neutral"><i class="zmdi zmdi-chart"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>University Name</td>
+                                                <td class="hidden-sm-down">Porterfield 508 Virginia Street Chicago, IL 60653</td>
+                                                <td>$5,021</td>
+                                                <td class="hidden-md-down">
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-neutral"><i class="zmdi zmdi-chart"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>University Name</td>
+                                                <td class="hidden-sm-down">508 Virginia Street Chicago, IL 60653</td>
+                                                <td>$1,325</td>
+                                                <td class="hidden-md-down">
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                    <i class="zmdi zmdi-star-outline"></i>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-neutral"><i class="zmdi zmdi-chart"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>University Name</td>
+                                                <td class="hidden-sm-down">1516 Holt Street West Palm Beach, FL 33401</td>
+                                                <td>$2,325</td>
+                                                <td class="hidden-md-down">
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                    <i class="zmdi zmdi-star-outline"></i>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-neutral"><i class="zmdi zmdi-chart"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>University Name</td>
+                                                <td class="hidden-sm-down">508 Virginia Street Chicago, IL 60653</td>
+                                                <td>$2,325</td>
+                                                <td class="hidden-md-down">
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                    <i class="zmdi zmdi-star col-amber"></i>
+                                                    <i class="zmdi zmdi-star-outline"></i>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-neutral"><i class="zmdi zmdi-chart"></i></button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="listview__item">
-                    <div class="listview__content">
-                        <div class="listview__heading">Sunday, September 4, 20:21:10 (10 Mins 43 Seconds)</div>
-
-                        <div class="listview__attrs">
-                            <span>Brazil</span>
-                            <span>Edge</span>
-                            <span>Windows</span>
+                    <div class="card student-list">
+                        <div class="header">
+                            <h2><strong>New</strong> Admission List <small>Description text here...</small></h2>
+                            <ul class="header-dropdown">
+                                <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more"></i> </a>
+                                    <ul class="dropdown-menu dropdown-menu-right slideUp">
+                                        <li><a href="javascript:void(0);">2017 Year</a></li>
+                                        <li><a href="javascript:void(0);">2016 Year</a></li>
+                                        <li><a href="javascript:void(0);">2015 Year</a></li>
+                                    </ul>
+                                </li>
+                                <li class="remove">
+                                    <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-hover m-b-0">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Age</th>
+                                        <th>Address</th>
+                                        <th>Number</th>
+                                        <th>Department</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><span class="list-name">OU 00456</span></td>
+                                        <td>Joseph</td>
+                                        <td>25</td>
+                                        <td>70 Bowman St. South Windsor, CT 06074</td>
+                                        <td>404-447-6013</td>
+                                        <td><span class="badge badge-primary">MCA</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-name">KU 00789</span></td>
+                                        <td>Cameron</td>
+                                        <td>27</td>
+                                        <td>123 6th St. Melbourne, FL 32904</td>
+                                        <td>404-447-4569</td>
+                                        <td><span class="badge badge-warning">Medical</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-name">KU 00987</span></td>
+                                        <td>Alex</td>
+                                        <td>23</td>
+                                        <td>123 6th St. Melbourne, FL 32904</td>
+                                        <td>404-447-7412</td>
+                                        <td><span class="badge badge-info">M.COM</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-name">OU 00951</span></td>
+                                        <td>James</td>
+                                        <td>23</td>
+                                        <td>44 Shirley Ave. West Chicago, IL 60185</td>
+                                        <td>404-447-2589</td>
+                                        <td><span class="badge badge-default">MBA</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-name">OU 00456</span></td>
+                                        <td>Joseph</td>
+                                        <td>25</td>
+                                        <td>70 Bowman St. South Windsor, CT 06074</td>
+                                        <td>404-447-6013</td>
+                                        <td><span class="badge badge-primary">MCA</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-name">OU 00953</span></td>
+                                        <td>charlie</td>
+                                        <td>21</td>
+                                        <td>123 6th St. Melbourne, FL 32904</td>
+                                        <td>404-447-9632</td>
+                                        <td><span class="badge badge-success">BBA</span></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="listview__item">
-                    <div class="listview__content">
-                        <div class="listview__heading">Sunday, September 4, 20:59:04 (1 Min 02 Seconds)</div>
-
-                        <div class="listview__attrs">
-                            <span>South Korea</span>
-                            <span>Chrome</span>
-                            <span>Android</span>
+                    <div class="card visitors-map">
+                        <div class="header">
+                            <h2><strong>Our</strong> Location <small>Contrary to popular belief, Lorem Ipsum is not simply random text</small></h2>
+                            <ul class="header-dropdown">
+                                <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more"></i> </a>
+                                    <ul class="dropdown-menu dropdown-menu-right slideUp">
+                                        <li><a href="javascript:void(0);">Action</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else</a></li>
+                                    </ul>
+                                </li>
+                                <li class="remove">
+                                    <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
+                                </li>
+                            </ul>
                         </div>
-                    </div>
-                </div>
-
-                <div class="listview__item">
-                    <div class="listview__content">
-                        <div class="listview__heading">Sunday, September 4, 20:58:12 (3 Min 44 Seconds)</div>
-
-                        <div class="listview__attrs">
-                            <span>Japan</span>
-                            <span>Chrome</span>
-                            <span>Windows</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-3"></div>
-            </div>
-        </div>
-
-        <div class="card todo">
-            <div class="card-body">
-                <h4 class="card-title">Todo lists</h4>
-                <h6 class="card-subtitle">Venenatis portauam Inceptos ameteiam</h6>
-            </div>
-            <div class="listview">
-                <div class="listview__item">
-                    <label class="custom-control custom-control--char todo__item">
-                        <input class="custom-control-input" type="checkbox" value="" checked>
-                        <span class="custom-control--char__helper"><i>F</i></span>
-                        <div class="todo__info">
-                            <span>Fivamus sagittis lacus vel augue laoreet rutrum faucibus dolor</span>
-                            <small>Today at 8.30 AM</small>
-                        </div>
-
-                        <div class="listview__attrs">
-                            <span>#Messages</span>
-                            <span>!!!</span>
-                        </div>
-                    </label>
-
-                    <div class="actions listview__actions">
-                        <div class="dropdown actions__item">
-                            <i class="zmdi zmdi-more-vert" data-toggle="dropdown"></i>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Mark as completed</a>
-                                <a class="dropdown-item" href="#">Delete</a>
+                        <div class="body">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12">
+                                    <div id="world-map-markers" style="height:280px;"></div>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="body">
+                                        <ul class="row location_list list-unstyled">
+                                            <li class="col-lg-4 col-md-4 col-6">
+                                                <div class="body xl-turquoise">
+                                                    <i class="zmdi zmdi-pin"></i>
+                                                    <h4 class="number count-to" data-from="0" data-to="53" data-speed="2500" data-fresh-interval="700">53</h4>
+                                                    <span>America</span>
+                                                </div>
+                                            </li>
+                                            <li class="col-lg-4 col-md-4 col-6">
+                                                <div class="body xl-khaki">
+                                                    <i class="zmdi zmdi-pin"></i>
+                                                    <h4 class="number count-to" data-from="0" data-to="24" data-speed="2500" data-fresh-interval="700">24</h4>
+                                                    <span>Australia</span>
+                                                </div>
+                                            </li>
+                                            <li class="col-lg-4 col-md-4 col-6">
+                                                <div class="body xl-parpl">
+                                                    <i class="zmdi zmdi-pin"></i>
+                                                    <h4 class="number count-to" data-from="0" data-to="15" data-speed="2500" data-fresh-interval="700">15</h4>
+                                                    <span>Canada</span>
+                                                </div>
+                                            </li>
+                                            <li class="col-lg-4 col-md-4 col-6">
+                                                <div class="body xl-salmon">
+                                                    <i class="zmdi zmdi-pin"></i>
+                                                    <h4 class="number count-to" data-from="0" data-to="33" data-speed="2500" data-fresh-interval="700">33</h4>
+                                                    <span>India</span>
+                                                </div>
+                                            </li>
+                                            <li class="col-lg-4 col-md-4 col-6">
+                                                <div class="body xl-blue">
+                                                    <i class="zmdi zmdi-pin"></i>
+                                                    <h4 class="number count-to" data-from="0" data-to="8" data-speed="2500" data-fresh-interval="700">8</h4>
+                                                    <span>UK</span>
+                                                </div>
+                                            </li>
+                                            <li class="col-lg-4 col-md-4 col-6">
+                                                <div class="body xl-slategray">
+                                                    <i class="zmdi zmdi-pin"></i>
+                                                    <h4 class="number count-to" data-from="0" data-to="5" data-speed="2500" data-fresh-interval="700">5</h4>
+                                                    <span>Other</span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="listview__item">
-                    <label class="custom-control custom-control--char todo__item">
-                        <input class="custom-control-input" type="checkbox" value="" checked>
-                        <span class="custom-control--char__helper"><i>N</i></span>
-                        <div class="todo__info">
-                            <span>Nullam id dolor id nibh ultricies vehicula ut id elit</span>
-                            <small>Today at 12.30 PM</small>
+                <div class="col-lg-4 col-md-12">
+                    <div class="card tasks_report">
+                        <div class="header">
+                            <h2><strong>Total</strong> Revenue</h2>
+                            <ul class="header-dropdown">
+                                <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more"></i> </a>
+                                    <ul class="dropdown-menu dropdown-menu-right slideUp">
+                                        <li><a href="javascript:void(0);">2017 Year</a></li>
+                                        <li><a href="javascript:void(0);">2016 Year</a></li>
+                                        <li><a href="javascript:void(0);">2015 Year</a></li>
+                                    </ul>
+                                </li>
+                                <li class="remove">
+                                    <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
+                                </li>
+                            </ul>
                         </div>
-
-                        <div class="listview__attrs">
-                            <span>#Clients</span>
-                            <span>!!</span>
+                        <div class="body text-center">
+                            <h4 class="margin-0">$ <span class="number count-to" data-from="0" data-to="8923" data-speed="2500" data-fresh-interval="700">8923</span></h4>
+                            <h6 class="m-b-20">Total Income</h6>
+                            <input type="text" class="knob dial1" value="66" data-width="100" data-height="100" data-thickness="0.3" data-fgColor="#4caf50" readonly>
+                            <h6 class="m-t-20">Satisfaction Rate</h6>
+                            <small class="displayblock">47% Average <i class="zmdi zmdi-trending-up"></i></small>
+                            <div class="sparkline m-t-20" data-type="bar" data-width="97%" data-height="32px" data-bar-Width="2" data-bar-Spacing="8" data-bar-Color="#212121">3,2,6,5,9,8,7,8,4,5,1,2,9,5,1,3,5,7,4,6</div>
                         </div>
-                    </label>
-
-                    <div class="actions listview__actions">
-                        <div class="dropdown actions__item">
-                            <i class="zmdi zmdi-more-vert" data-toggle="dropdown"></i>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Mark as completed</a>
-                                <a class="dropdown-item" href="#">Delete</a>
+                    </div>
+                    <div class="card bg-dark">
+                        <div class="body">
+                            <div class="sparkline m-b-10" data-type="bar" data-width="97%" data-height="38px" data-bar-Width="2" data-bar-Spacing="6" data-bar-Color="#cccccc">2,8,5,3,1,7,9,5,6,4,2,3,1,2,8,5,3,1,7,9,5,6,4,2,3,1</div>
+                            <h6 class="text-center m-b-25 col-white">New Students in USA</h6>
+                            <div id="usa_map" style="height: 200px"></div>
+                            <div class="table-responsive m-t-20">
+                                <table class="table table-striped m-b-0">
+                                    <thead>
+                                    <tr>
+                                        <th>City</th>
+                                        <th>New Student</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>New York</td>
+                                        <td>215<i class="zmdi zmdi-trending-up m-l-10"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Los Angeles</td>
+                                        <td>189<i class="zmdi zmdi-trending-up m-l-10"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Chicago</td>
+                                        <td>408<i class="zmdi zmdi-trending-down m-l-10"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Houston</td>
+                                        <td>78<i class="zmdi zmdi-trending-down m-l-10"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phoenix</td>
+                                        <td>148<i class="zmdi zmdi-trending-up m-l-10"></i></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="body text-center">
+                            <input type="text" class="knob" value="65" data-width="100" data-height="100" data-thickness="0.25" data-fgColor="#cb8fe7" readonly>
+                            <p class="text-muted m-b-0">READ-ONLY</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="header">
+                            <h2><strong>Pro.</strong> Timeline</h2>
+                            <ul class="header-dropdown">
+                                <li class="remove">
+                                    <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <div class="new_timeline">
+                                <div class="header">
+                                    <div class="color-overlay">
+                                        <div class="day-number">8</div>
+                                        <div class="date-right">
+                                            <div class="day-name">Monday</div>
+                                            <div class="month">February 2018</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <div class="bullet pink"></div>
+                                        <div class="time">11am</div>
+                                        <div class="desc">
+                                            <h3>Attendance</h3>
+                                            <h4>Computer Class</h4>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="bullet green"></div>
+                                        <div class="time">12pm</div>
+                                        <div class="desc">
+                                            <h3>Design Team</h3>
+                                            <h4>Hangouts</h4>
+                                            <ul class="list-unstyled team-info margin-0 p-t-5">
+                                                <li><img src="https://via.placeholder.com/35x35" alt="Avatar"></li>
+                                                <li><img src="https://via.placeholder.com/35x35" alt="Avatar"></li>
+                                                <li><img src="https://via.placeholder.com/35x35" alt="Avatar"></li>
+                                                <li><img src="https://via.placeholder.com/35x35" alt="Avatar"></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="bullet orange"></div>
+                                        <div class="time">1:30pm</div>
+                                        <div class="desc">
+                                            <h3>Lunch Break</h3>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="bullet green"></div>
+                                        <div class="time">2pm</div>
+                                        <div class="desc">
+                                            <h3>Finish</h3>
+                                            <h4>Go to Home</h4>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="listview__item">
-                    <label class="custom-control custom-control--char todo__item">
-                        <input class="custom-control-input" type="checkbox" value="">
-                        <span class="custom-control--char__helper"><i>C</i></span>
-                        <div class="todo__info">
-                            <span>Cras mattis consectetur purus sit amet fermentum</span>
-                            <small>Tomorrow at 10.30 AM</small>
-                        </div>
-
-                        <div class="listview__attrs">
-                            <span>#Clients</span>
-                            <span>!!</span>
-                        </div>
-                    </label>
-
-                    <div class="actions listview__actions">
-                        <div class="dropdown actions__item">
-                            <i class="zmdi zmdi-more-vert" data-toggle="dropdown"></i>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Mark as completed</a>
-                                <a class="dropdown-item" href="#">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="listview__item">
-                    <label class="custom-control custom-control--char todo__item">
-                        <input class="custom-control-input" type="checkbox" value="">
-                        <span class="custom-control--char__helper"><i>I</i></span>
-                        <div class="todo__info">
-                            <span>Integer posuere erat a ante venenatis dapibus posuere velit aliquet</span>
-                            <small>05/08/2017 at 08.00 AM</small>
-                        </div>
-
-                        <div class="listview__attrs">
-                            <span>#Server</span>
-                            <span>!</span>
-                        </div>
-                    </label>
-
-                    <div class="actions listview__actions">
-                        <div class="dropdown actions__item">
-                            <i class="zmdi zmdi-more-vert" data-toggle="dropdown"></i>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Mark as completed</a>
-                                <a class="dropdown-item" href="#">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="listview__item">
-                    <label class="custom-control custom-control--char todo__item">
-                        <input class="custom-control-input" type="checkbox" value="">
-                        <span class="custom-control--char__helper"><i>P</i></span>
-                        <div class="todo__info">
-                            <span>Praesent commodo cursus magnavel scelerisque nisl consectetur</span>
-                            <small>10/08/2016 at 04.00 AM</small>
-                        </div>
-
-                        <div class="listview__attrs">
-                            <span>#Server</span>
-                            <span>!!!</span>
-                        </div>
-                    </label>
-
-                    <div class="actions listview__actions">
-                        <div class="dropdown actions__item">
-                            <i class="zmdi zmdi-more-vert" data-toggle="dropdown"></i>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Mark as completed</a>
-                                <a class="dropdown-item" href="#">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <a href="todos.html" class="view-more">View More</a>
-        </div>
-
-        <div class="card widget-pie">
-            <div class="col-6 col-sm-4 col-md-6 col-lg-4 widget-pie__item">
-                <div class="easy-pie-chart" data-percent="50" data-size="80" data-track-color="rgba(0,0,0,0.5)" data-bar-color="#fff">
-                    <span class="easy-pie-chart__value">92</span>
-                </div>
-                <div class="widget-pie__title">Email<br> Scheduled</div>
-            </div>
-
-            <div class="col-6 col-sm-4 col-md-6 col-lg-4 widget-pie__item">
-                <div class="easy-pie-chart" data-percent="11" data-size="80" data-track-color="rgba(0,0,0,0.35)" data-bar-color="#fff">
-                    <span class="easy-pie-chart__value">11</span>
-                </div>
-                <div class="widget-pie__title">Email<br> Bounced</div>
-            </div>
-
-            <div class="col-6 col-sm-4 col-md-6 col-lg-4 widget-pie__item">
-                <div class="easy-pie-chart" data-percent="52" data-size="80" data-track-color="rgba(0,0,0,0.35)" data-bar-color="#fff">
-                    <span class="easy-pie-chart__value">52</span>
-                </div>
-                <div class="widget-pie__title">Email<br> Opened</div>
-            </div>
-
-            <div class="col-6 col-sm-4 col-md-6 col-lg-4 widget-pie__item">
-                <div class="easy-pie-chart" data-percent="44" data-size="80" data-track-color="rgba(0,0,0,0.35)" data-bar-color="#fff">
-                    <span class="easy-pie-chart__value">44</span>
-                </div>
-                <div class="widget-pie__title">Storage<br>Remaining</div>
-            </div>
-
-            <div class="col-6 col-sm-4 col-md-6 col-lg-4 widget-pie__item">
-                <div class="easy-pie-chart" data-percent="78" data-size="80" data-track-color="rgba(0,0,0,0.35)" data-bar-color="#fff">
-                    <span class="easy-pie-chart__value">78</span>
-                </div>
-                <div class="widget-pie__title">Web Page<br> Views</div>
-            </div>
-
-            <div class="col-6 col-sm-4 col-md-6 col-lg-4 widget-pie__item">
-                <div class="easy-pie-chart" data-percent="32" data-size="80" data-track-color="rgba(0,0,0,0.35)" data-bar-color="#fff">
-                    <span class="easy-pie-chart__value">32</span>
-                </div>
-                <div class="widget-pie__title">Server<br> Processing</div>
             </div>
         </div>
-
-        <div class="card widget-calendar">
-            <div class="actions">
-                <a href="calendar.html" class="actions__item zmdi zmdi-plus"></a>
-                <div class="dropdown actions__item">
-                    <i class="zmdi zmdi-more-vert" data-toggle="dropdown"></i>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#">Refresh</a>
-                        <a class="dropdown-item" href="#">Calendar Settings</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="widget-calendar__header">
-                <div class="widget-calendar__year"></div>
-                <div class="widget-calendar__day"></div>
-            </div>
-
-            <div class="widget-calendar__body"></div>
-        </div>
-
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Server Process</h4>
-                <h6 class="card-subtitle">Maecenas faucibus mollis interdum porttitor</h6>
-
-                <div class="flot-chart flot-dynamic"></div>
-                <div class="flot-chart-legends flot-chart-legends--dynamic"></div>
-            </div>
-        </div>
-    </div>
+    </section>
 @endsection
 
 @push('script')
-
-
-    <script src="{{ asset('vendors/bower_components/salvattore/dist/salvattore.min.js') }}"></script>
-    <script src="{{ asset('vendors/bower_components/flot/jquery.flot.js') }}"></script>
-    <script src="{{ asset('vendors/bower_components/flot/jquery.flot.resize.js') }}"></script>
-    <script src="{{ asset('vendors/bower_components/flot.curvedlines/curvedLines.js') }}"></script>
-    <script src="{{ asset('vendors/bower_components/jqvmap/dist/jquery.vmap.min.js') }}"></script>
-    <script src="{{ asset('vendors/bower_components/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
-    <script src="{{ asset('vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js') }}"></script>
-    <script src="{{ asset('vendors/bower_components/peity/jquery.peity.min.js') }}"></script>
-    <script src="{{ asset('vendors/bower_components/moment/min/moment.min.js') }}"></script>
-    <script src="{{ asset('vendors/bower_components/fullcalendar/dist/fullcalendar.min.js') }}"></script>
-
-    <!-- Charts and maps-->
-    <script src="{{ asset('demo/js/flot-charts/curved-line.js') }}"></script>
-    <script src="{{ asset('demo/js/flot-charts/line.js') }}"></script>
-    <script src="{{ asset('demo/js/flot-charts/dynamic.js') }}"></script>
-    <script src="{{ asset('demo/js/flot-charts/chart-tooltips.js') }}"></script>
-    <script src="{{ asset('demo/js/other-charts.js') }}"></script>
-    <script src="{{ asset('demo/js/jqvmap.js') }}"></script>
+    <script src="{{ asset('bundles/morrisscripts.bundle.js') }}"></script><!-- Morris Plugin Js -->
+    <script src="{{ asset('bundles/jvectormap.bundle.js') }}"></script> <!-- JVectorMap Plugin Js -->
+    <script src="{{ asset('plugins/jvectormap/jquery-jvectormap-us-aea-en.js') }}"></script><!-- USA Map Js -->
+    <script src="{{ asset('bundles/knob.bundle.js') }}"></script> <!-- Jquery Knob, Count To, Sparkline Js -->
+    <script src="{{ asset('bundles/mainscripts.bundle.js') }}"></script>
+    <script src="{{ asset('js/pages/index.js') }}"></script>
 @endpush

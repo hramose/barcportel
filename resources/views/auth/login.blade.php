@@ -1,84 +1,45 @@
-@extends('layouts.app')
+@extends('layouts.auth.app')
 
 @section('title', 'Login')
 
 @section('content')
 
-    <div class="login">
-
-        <!-- Login -->
-        <div class="login__block active" id="l-login">
-            <div class="login__block__header">
-                <i class="zmdi zmdi-account-circle"></i>
-                Hi there! Please Sign in
-
-                <div class="actions actions--inverse login__block__actions">
-                    <div class="dropdown">
-                        <i data-toggle="dropdown" class="zmdi zmdi-more-vert actions__item"></i>
-
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item"  href="{{ route('register') }}">Create an account</a>
-                            <a class="dropdown-item" href="#">Forgot password?</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @include('layouts.partial.msg')
-
-            <div class="login__block__body">
-                <form method="POST" action="{{ route('login') }}">
+    <div class="container">
+        <div class="col-md-12 content-center">
+            <div class="card-plain">
+                <form class="form" method="POST" action="{{ route('login') }}">
                     @csrf
-                <div class="form-group">
-                    <input type="email" class="form-control text-center {{ $errors->has('email') ? ' is-invalid' : ''}}" name="email" value="{{ old('email') }}" placeholder="Email Address" required autofocus>
-                    @if ($errors->has('email'))
-                        <span class="invalid-feedback">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </span>
-                    @endif
-                </div>
-
-                <div class="form-group">
-                    <input type="password" class="form-control text-center{{ $errors->has('email') ? ' is-invalid' : ''}}" name="password" placeholder="Password" required>
-                    @if ($errors->has('password'))
-                        <span class="invalid-feedback">
-                            <strong>{{ $errors->first('password') }}</strong>
-                        </span>
-                    @endif
-                </div>
-
-                    <button type="submit" class="btn btn--icon login__block__btn"><i class="zmdi zmdi-long-arrow-right"></i></button>
-                </form>
-            </div>
-        </div>
-
-
-
-        <!-- Forgot Password -->
-        <div class="login__block" id="l-forget-password">
-            <div class="login__block__header">
-                <i class="zmdi zmdi-account-circle"></i>
-                Forgot Password?
-
-                <div class="actions actions--inverse login__block__actions">
-                    <div class="dropdown">
-                        <i data-toggle="dropdown" class="zmdi zmdi-more-vert actions__item"></i>
-
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" data-sa-action="login-switch" data-sa-target="#l-login" href="#">Already have an account?</a>
-                            <a class="dropdown-item" data-sa-action="login-switch" data-sa-target="#l-register" href="#">Create an account</a>
+                    <div class="header">
+                        <div class="logo-container">
+                            <img src="{{ asset('images/logo.svg') }}" alt="">
+                        </div>
+                        <h5>Log in</h5>
+                    </div>
+                    <div class="content">
+                        <div class="input-group input-lg">
+                            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Email" required autofocus>
+                            <span class="input-group-addon">
+                                <i class="zmdi zmdi-account-circle"></i>
+                            </span>
+                        </div>
+                        <div class="input-group input-lg">
+                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Password" required>
+                            <span class="input-group-addon">
+                                <i class="zmdi zmdi-lock"></i>
+                            </span>
+                        </div>
+                        <div class="checkbox">
+                            <input id="remember" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                            <label for="remember">
+                                Remember Me
+                            </label>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="login__block__body">
-                <p class="mb-5">Lorem ipsum dolor fringilla enim feugiat commodo sed ac lacus.</p>
-
-                <div class="form-group">
-                    <input type="text" class="form-control text-center" placeholder="Email Address">
-                </div>
-
-                <a href="index-2.html" class="btn btn--icon login__block__btn"><i class="zmdi zmdi-check"></i></a>
+                    <div class="footer text-center">
+                        <button type="submit" class="btn btn-primary btn-round btn-lg btn-block ">SIGN IN</button>
+                        <h5><a href="" class="link">Forgot Password?</a></h5>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
